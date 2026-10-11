@@ -1,0 +1,42 @@
+# Base44 sandbox runbook for CRIMEPULSE.
+#
+# The app is a frontend-only Vite + React SPA (see AGENTS.md: the README's
+# FastAPI backend is not part of this repository). It runs here as a single
+# live-reload dev server on host port 3000, from the repository source —
+# never from the prebuilt bundle in ./assets.
+services:
+  web:
+    image: node:22
+    working_dir: /app
+    # Dependencies live in a named volume, so install from the lockfile on
+    # every startup (after mounts are available) and then exec the dev server.
+    command: ["sh", "-ec", "npm ci --no-audit --no-fund && exec npm run dev"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - web_node_modules:/app/node_modules
+    environment:
+      # Bare entries pass the platform-provided values through from the host.
+      - BASE44_PREVIEW_MODE
+      # Vite >= 6.1 appends this to server.allowedHosts, which is what lets the
+      # preview proxy's hostname (<port>-<sandbox id>.<host domain>) through.
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      # Bind-mount file watching is unreliable without polling.
+      - CHOKIDAR_USEPOLLING=true
+    restart: on-failure
+    healthcheck:
+      # GET / is the dev server's own index route; node's built-in fetch is
+      # available in the image, so no extra tooling is needed.
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 240s
+
+volumes:
+  web_node_modules:
