@@ -17,7 +17,7 @@ services:
       - /run/base44/app.env
     command: ["sh", "-ec", "npm install && exec npm run dev"]
     healthcheck:
-      test: ["CMD", "sh", "-c", "wget -qO- http://localhost:5173/ | grep -q 'Digitalink SVCET'"]
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5173/').then(r=>r.text()).then(t=>{if(!t.includes('Digitalink SVCET'))process.exit(1)})"]
       interval: 15s
       timeout: 5s
       retries: 5
