@@ -66,6 +66,15 @@ curl -sS -o /dev/null -w '%{http_code}\n' http://localhost:3000/
   gated on `BASE44_PREVIEW_MODE`.
 - `CHOKIDAR_USEPOLLING=true` is set because bind-mounted file watching is
   unreliable in the sandbox.
+- Restarting or recreating `web` makes the logs show `npm error command failed`,
+  `npm error signal SIGTERM`, `npm error path /app` and a `_logs/*-debug-0.log`
+  path. This is npm's ordinary shutdown notice when Docker SIGTERMs the
+  `sh -c vite` it spawned — **not an application fault**, and nothing to fix.
+  Confirm it is stale rather than current with
+  `docker compose -f docker-compose.base44.yml logs --since <restart time> web`:
+  a healthy stack prints no lines after the restart and `docker compose ps`
+  reports `healthy`. The same applies to Vite's `[vite] server restarted.` line,
+  which is emitted when `vite.config.mjs` changes.
 - No secrets are needed: the app has no authenticated external service. The only
   network dependencies are public and unauthenticated — OpenStreetMap tiles
   (`tile.openstreetmap.org`) and Google Fonts (`fonts.googleapis.com`, imported
