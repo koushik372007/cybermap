@@ -26,7 +26,8 @@ actually applied, and to pin the dev server to port 3000.
 main:app --reload --port 8000`) with SQLite at `backend/crimepulse_demo.db`.
 **No `backend/` directory exists in this repository, in any branch or in any
 commit** (`git log --all --diff-filter=A --name-only` lists no backend file).
-The only API the frontend calls is:
+The frontend only calls the API when `VITE_API_URL` is set (unset by default, so no
+refused requests; demo data is used). When set, it calls:
 
 - `GET  http://localhost:8000/api/incidents` → expects `{ items: [...] }`
 - `POST http://localhost:8000/api/incidents`
