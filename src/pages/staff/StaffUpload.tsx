@@ -54,7 +54,7 @@ export default function StaffUpload() {
       supabase.from('departments').select('*').eq('is_active', true).order('display_order'),
       supabase.from('academic_years').select('*').eq('is_active', true).order('display_order'),
       supabase.from('resource_categories').select('*').eq('is_active', true).order('display_order'),
-      supabase.from('faculty_department_permissions').select('*, department:departments(*)').eq('faculty_user_id', profile.id),
+      supabase.from('faculty_permissions').select('*, department:departments(*)').eq('faculty_user_id', profile.id),
       supabase.from('app_settings').select('*').limit(1).single(),
     ])
 
