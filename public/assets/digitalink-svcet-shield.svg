@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield outline -->
+  <path d="M100 10 L180 40 L180 100 C180 145 140 175 100 190 C60 175 20 145 20 100 L20 40 Z" fill="url(#shieldGrad)" stroke="url(#silverGrad)" stroke-width="3"/>
+  <!-- Inner shield -->
+  <path d="M100 25 L165 48 L165 100 C165 137 132 162 100 175 C68 162 35 137 35 100 L35 48 Z" fill="none" stroke="url(#silverGrad)" stroke-width="2" opacity="0.6"/>
+  <!-- Blue hands (cupping shape) -->
+  <path d="M70 85 C60 95 60 115 70 125 C75 130 85 130 90 125 L90 110 C85 105 75 95 70 85 Z" fill="#3b82f6" opacity="0.9"/>
+  <path d="M130 85 C140 95 140 115 130 125 C125 130 115 130 110 125 L110 110 C115 105 125 95 130 85 Z" fill="#3b82f6" opacity="0.9"/>
+  <!-- Green engineering gear -->
+  <circle cx="100" cy="105" r="28" fill="url(#greenGrad)" stroke="url(#silverGrad)" stroke-width="2"/>
+  <circle cx="100" cy="105" r="18" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <!-- Gear teeth -->
+  <g fill="url(#greenGrad)" stroke="url(#silverGrad)" stroke-width="1">
+    <rect x="97" y="72" width="6" height="10" rx="1"/>
+    <rect x="97" y="128" width="6" height="10" rx="1"/>
+    <rect x="67" y="102" width="10" height="6" rx="1"/>
+    <rect x="123" y="102" width="10" height="6" rx="1"/>
+    <rect x="76" y="78" width="8" height="8" rx="1" transform="rotate(45 80 82)"/>
+    <rect x="116" y="78" width="8" height="8" rx="1" transform="rotate(-45 120 82)"/>
+    <rect x="76" y="124" width="8" height="8" rx="1" transform="rotate(-45 80 128)"/>
+    <rect x="116" y="124" width="8" height="8" rx="1" transform="rotate(45 120 128)"/>
+  </g>
+  <!-- Center letter S -->
+  <text x="100" y="113" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="url(#silverGrad)">S</text>
+  <!-- Book at bottom -->
+  <path d="M75 145 L100 140 L125 145 L125 155 L100 150 L75 155 Z" fill="url(#silverGrad)" opacity="0.8"/>
+</svg>
