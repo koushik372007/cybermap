@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
 import {
   LayoutDashboard, FolderTree, Upload, FileText, Users, Settings,
-  Shield, Bookmarks, LogOut, Menu, X, ScrollText, FolderOpen, User,
+  Shield, Bookmark, LogOut, Menu, X, ScrollText, FolderOpen, User,
   GraduationCap, ClipboardList, BookOpen,
 } from 'lucide-react'
 import { useState } from 'react'
@@ -25,7 +25,7 @@ export default function DashboardLayout({ children, title }: { children: React.R
     student: [
       { to: '/student/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-4 h-4" /> },
       { to: '/student/departments', label: 'Browse Resources', icon: <FolderTree className="w-4 h-4" /> },
-      { to: '/student/bookmarks', label: 'Bookmarks', icon: <Bookmarks className="w-4 h-4" /> },
+      { to: '/student/bookmarks', label: 'Bookmarks', icon: <Bookmark className="w-4 h-4" /> },
       { to: '/student/profile', label: 'Profile', icon: <User className="w-4 h-4" /> },
     ],
     faculty: [

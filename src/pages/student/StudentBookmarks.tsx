@@ -6,7 +6,7 @@ import type { Resource } from '../../lib/types'
 import ResourceCard from '../../components/ResourceCard'
 import EmptyState from '../../components/EmptyState'
 import LoadingSpinner from '../../components/LoadingSpinner'
-import { Bookmarks } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
 
 export default function StudentBookmarks() {
   const { profile } = useAuth()
@@ -56,7 +56,7 @@ export default function StudentBookmarks() {
         </div>
       ) : (
         <EmptyState
-          icon={Bookmarks}
+          icon={Bookmark}
           title="No bookmarks yet"
           message="Bookmark resources to quickly access them later."
         />

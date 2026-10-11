@@ -7,7 +7,7 @@ import type { Resource, Department } from '../../lib/types'
 import ResourceCard from '../../components/ResourceCard'
 import EmptyState from '../../components/EmptyState'
 import LoadingSpinner from '../../components/LoadingSpinner'
-import { FolderTree, BookOpen, Clock, Bookmarks, Search } from 'lucide-react'
+import { FolderTree, BookOpen, Clock, Bookmark, Search } from 'lucide-react'
 
 export default function StudentDashboard() {
   const { profile } = useAuth()
@@ -64,7 +64,7 @@ export default function StudentDashboard() {
           <p className="text-xs text-slate-500">Recent Resources</p>
         </div>
         <div className="card p-4">
-          <Bookmarks className="w-6 h-6 text-amber-500 mb-2" />
+          <Bookmark className="w-6 h-6 text-amber-500 mb-2" />
           <p className="text-2xl font-bold text-slate-900">{bookmarkCount}</p>
           <p className="text-xs text-slate-500">Bookmarks</p>
         </div>

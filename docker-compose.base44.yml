@@ -1,0 +1,25 @@
+services:
+  web:
+    image: node:22-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:5173"
+    environment:
+      - BASE44_PREVIEW_MODE
+      - BASE44_PUBLIC_HOST_SUFFIX
+      - BASE44_SANDBOX_HOST_DOMAIN
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+    env_file:
+      - ./.env.base44-defaults
+      - /run/base44/app.env
+    command: ["sh", "-ec", "npm install && exec npm run dev"]
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget -qO- http://localhost:5173/ | grep -q 'Digitalink SVCET'"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: on-failure

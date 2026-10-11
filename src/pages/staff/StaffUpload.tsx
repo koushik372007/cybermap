@@ -187,11 +187,7 @@ export default function StaffUpload() {
       // Upload file to private storage
       const { error: uploadError } = await supabase.storage
         .from('resources')
-        .upload(storagePath, file, {
-          onUploadProgress: (e) => {
-            if (e.total > 0) setProgress(Math.round((e.loaded / e.total) * 100))
-          },
-        })
+        .upload(storagePath, file)
 
       if (uploadError) throw uploadError
 
